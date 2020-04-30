@@ -53,7 +53,7 @@ public class BookFlightController {
 	}
 
 	@GetMapping("/get/{bookingId}")
-	public Optional<BookingDetails> displayOneList(@PathVariable Integer bookingId) {
+	public BookingDetails displayOneList(@PathVariable Integer bookingId) {
 		return flightService.displayOneBookingList(bookingId);
 	}
 

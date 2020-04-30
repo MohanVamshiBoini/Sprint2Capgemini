@@ -14,6 +14,6 @@ public interface BookFlightService {
 	public void addBookingDetails(BookingDetails booking);
 	public void updateBookingDetails(BookingDetails booking);
 	public List<BookingDetails> displayBookingList();
-	public Optional<BookingDetails> displayOneBookingList(Integer bookingId);
+	public BookingDetails displayOneBookingList(Integer bookingId);
 	public String updateSeats(Flight flight, BookingDetails book);
 }

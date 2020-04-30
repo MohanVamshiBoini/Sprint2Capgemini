@@ -64,8 +64,8 @@ public List<BookingDetails> displayBookingList() {
 	return list;
 }
 	@Override
-	public Optional<BookingDetails> displayOneBookingList(Integer bookingId) {
-		Optional<BookingDetails> list= bookingdao.findById(bookingId);
+	public BookingDetails displayOneBookingList(Integer bookingId) {
+		BookingDetails list= bookingdao.findOne(bookingId);
 		return list;
 	}
 }
