@@ -2,6 +2,7 @@ package com.cap.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,8 +14,11 @@ public class BookingDetails implements Serializable{
 	@Id
 	@GeneratedValue
     private Integer bookingId;
+	@Column(length=10)
 	private int userId;
+	@Column(length=10)
 	private int noofSeats;
+	@Column(length=10)
 	private String passengerName;
 	public Integer getBookingId() {
 		return bookingId;

@@ -3,6 +3,7 @@ package com.cap.dto;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,12 +13,19 @@ import javax.persistence.Table;
 public class Flight implements Serializable {
 	@Id
 	private Integer flightNumber;
+	@Column(length=10)
 	private String carrierName;
+	@Column(length=10)
 	private String flightModel;
+	@Column(length=10)
 	private int seatCapacity;
+	@Column(length=10)
 	private String from_loc;
+	@Column(length=10)
 	private String to_loc;
+	@Column(length=10)
 	private Date date1;
+	@Column(length=10)
 	private int ticketCostPerSeat;
 
 	public Integer getFlightNumber() {
