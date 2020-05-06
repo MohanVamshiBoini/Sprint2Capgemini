@@ -49,7 +49,7 @@ public class BookFlightServiceImpl implements BookFlightService{
 	    {
 
 	      bookingdao.save(booking);
-	     
+	     System.out.println(booking.getBookingId());
 	    }
 
 @Override

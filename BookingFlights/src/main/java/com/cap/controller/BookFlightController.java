@@ -32,19 +32,20 @@ public class BookFlightController {
 	}
 
 	@GetMapping("/book/{from_loc}/{to_loc}/{date1}")
-	public String bookFlight(@PathVariable String from_loc, @PathVariable String to_loc, @PathVariable Date date1) {
+	public List<Flight> bookFlight(@PathVariable String from_loc, @PathVariable String to_loc, @PathVariable Date date1) {
 		List<Flight> flight1 = flightService.bookingFlights(from_loc, to_loc, date1);
 		if (flight1 != null) {
 
-			return "Available flights " + flight1;
+			return flight1;
 		}
-		return "no flights available";
+		return null;
 	}
 
 	@PostMapping(value = "/addBooking")
-	public String addBookingDetails(@RequestBody() BookingDetails booking) {
+	public BookingDetails addBookingDetails(@RequestBody() BookingDetails booking) {
 		flightService.addBookingDetails(booking);
-		return "Booking Details Stored";
+		return flightService.displayOneBookingList(booking.getBookingId());
+	
 	}
 
 	@GetMapping("/bookinglist")
