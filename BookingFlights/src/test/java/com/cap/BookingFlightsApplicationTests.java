@@ -15,7 +15,7 @@ import com.cap.dto.BookingDetails;
 
 @SpringBootTest
 public class BookingFlightsApplicationTests {
-/*
+
 @Test
 	public void bookTicketsTest() throws URISyntaxException 
 	{
@@ -56,10 +56,10 @@ public class BookingFlightsApplicationTests {
 	    ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
 	    Assert.assertEquals(302, result.getStatusCodeValue());
 	    Assert.assertNotNull(book);
-	}*/
+	}
 	
 	@Test
-	public void getBookingDetails() throws URISyntaxException 
+	public void getBookingDetailsTrue() throws URISyntaxException 
 	{
 	    RestTemplate restTemplate = new RestTemplate();
 	     
@@ -70,6 +70,17 @@ public class BookingFlightsApplicationTests {
 	    BookingDetails data = result.getBody();
 	    Assert.assertEquals(200, result.getStatusCodeValue());
 	    Assert.assertNotNull(data);
+	}
+	@Test   
+	public void getBookingDetailsFalse() throws URISyntaxException 
+	{
+	    RestTemplate restTemplate = new RestTemplate();
+	     
+	    final String baseUrl = "http://localhost:"+8091+"/Flights/get/4";
+	    URI uri = new URI(baseUrl);
+	 
+	    ResponseEntity<BookingDetails> result = restTemplate.getForEntity(uri, BookingDetails.class);
+	    Assert.assertEquals(400, result.getStatusCodeValue());
 	}
 	
 	

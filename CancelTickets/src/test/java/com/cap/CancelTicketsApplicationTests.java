@@ -2,7 +2,6 @@ package com.cap;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
