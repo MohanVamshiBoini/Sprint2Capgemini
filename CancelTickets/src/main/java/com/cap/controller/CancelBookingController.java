@@ -13,12 +13,12 @@ import com.cap.service.CancelBookingService;
 @CrossOrigin("http://localhost:4200")
 public class CancelBookingController  {
 	@Autowired
-    CancelBookingService Service;
+    CancelBookingService service;
 
 	@DeleteMapping("/cancelBooking/{bookingId}")
 	  public String deleteBookingDetails(@PathVariable Integer bookingId)
 	  {
-	 	Service.deleteBookingDetails(bookingId);
-	 	 return "cancelled tickets";
+	 	
+	 	return service.deleteBookingDetails(bookingId);
 	  }
 }

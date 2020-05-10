@@ -1,10 +1,7 @@
 package com.cap.service;
 
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +11,7 @@ import com.cap.dao.BookFlightDao;
 import com.cap.dao.FlightDao;
 import com.cap.dto.BookingDetails;
 import com.cap.dto.Flight;
+import com.cap.exceptions.IdNotFoundException;
 
 @Service
 @Transactional
@@ -32,10 +30,28 @@ public class BookFlightServiceImpl implements BookFlightService{
 		return flights;
 		
 	}
+	
 	@Override
-	public List<Flight> bookingFlights(String from_loc,String to_loc,Date date1) {
-		List<Flight> flights1=dao.findByLocations(from_loc,to_loc,date1);
-		return flights1;
+	 public void addBookingDetails(BookingDetails booking)
+	    {
+
+	      bookingdao.save(booking);
+	    }
+
+    @Override
+  public void updateBookingDetails(BookingDetails booking)
+   {
+	 bookingdao.delete(booking);
+     bookingdao.save(booking);
+	}
+
+	@Override
+	public BookingDetails displayOneBookingList(Integer bookingId) throws IdNotFoundException{
+		BookingDetails list= bookingdao.findOne(bookingId);
+		if(list==null)
+			throw new IdNotFoundException("Enter The correct booking Id");
+		else
+		return list;
 	}
 	@Override
 	public String updateSeats(Flight flight,BookingDetails book) {
@@ -43,29 +59,5 @@ public class BookFlightServiceImpl implements BookFlightService{
 			dao.save(flight);
 			return "seats were updated successfully!!";
 	
-	}
-	@Override
-	 public void addBookingDetails(BookingDetails booking)
-	    {
-
-	      bookingdao.save(booking);
-	     System.out.println(booking.getBookingId());
-	    }
-
-@Override
-public void updateBookingDetails(BookingDetails booking)
-   {
-	bookingdao.delete(booking);
-     bookingdao.save(booking);
-	}
-@Override
-public List<BookingDetails> displayBookingList() {
-	List<BookingDetails> list= bookingdao.findAll();
-	return list;
-}
-	@Override
-	public BookingDetails displayOneBookingList(Integer bookingId) {
-		BookingDetails list= bookingdao.findOne(bookingId);
-		return list;
 	}
 }

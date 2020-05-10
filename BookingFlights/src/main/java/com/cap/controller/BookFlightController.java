@@ -1,9 +1,6 @@
 package com.cap.controller;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,26 +28,12 @@ public class BookFlightController {
 		return flightService.displayFlights();
 	}
 
-	@GetMapping("/book/{from_loc}/{to_loc}/{date1}")
-	public List<Flight> bookFlight(@PathVariable String from_loc, @PathVariable String to_loc, @PathVariable Date date1) {
-		List<Flight> flight1 = flightService.bookingFlights(from_loc, to_loc, date1);
-		if (flight1 != null) {
-
-			return flight1;
-		}
-		return null;
-	}
 
 	@PostMapping(value = "/addBooking")
 	public BookingDetails addBookingDetails(@RequestBody() BookingDetails booking) {
 		flightService.addBookingDetails(booking);
 		return flightService.displayOneBookingList(booking.getBookingId());
 	
-	}
-
-	@GetMapping("/bookinglist")
-	public List<BookingDetails> displayList() {
-		return flightService.displayBookingList();
 	}
 
 	@GetMapping("/get/{bookingId}")
